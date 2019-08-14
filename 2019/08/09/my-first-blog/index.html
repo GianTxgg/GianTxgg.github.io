@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>my-first-blog | LonelY</title>
+  <title>RIP 路由协议 | LonelY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用github pages服务搭建博客的好处有：  全是静态文件，访问速度快； 免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台； 可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的；">
+  <meta name="description" content="动态路由协议包括距离向量路由协议和链路状态路由协议。RIP（Routing InformationProtocols，  路由信息协议）是使用最广泛的距离向量路由协议。RIP 是为小型网络环境设计的，因为这类协议的路  由学习及路由更新将产生较大的流量，占用过多的带宽。">
 <meta name="keywords" content="编程，渗透，思科模拟">
 <meta property="og:type" content="article">
-<meta property="og:title" content="my-first-blog">
+<meta property="og:title" content="RIP 路由协议">
 <meta property="og:url" content="http://yoursite.com/2019/08/09/my-first-blog/index.html">
 <meta property="og:site_name" content="LonelY">
-<meta property="og:description" content="使用github pages服务搭建博客的好处有：  全是静态文件，访问速度快； 免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台； 可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的；">
+<meta property="og:description" content="动态路由协议包括距离向量路由协议和链路状态路由协议。RIP（Routing InformationProtocols，  路由信息协议）是使用最广泛的距离向量路由协议。RIP 是为小型网络环境设计的，因为这类协议的路  由学习及路由更新将产生较大的流量，占用过多的带宽。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-10T02:33:13.226Z">
+<meta property="og:updated_time" content="2019-08-14T12:01:36.006Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="my-first-blog">
-<meta name="twitter:description" content="使用github pages服务搭建博客的好处有：  全是静态文件，访问速度快； 免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台； 可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的；">
+<meta name="twitter:title" content="RIP 路由协议">
+<meta name="twitter:description" content="动态路由协议包括距离向量路由协议和链路状态路由协议。RIP（Routing InformationProtocols，  路由信息协议）是使用最广泛的距离向量路由协议。RIP 是为小型网络环境设计的，因为这类协议的路  由学习及路由更新将产生较大的流量，占用过多的带宽。">
   
     <link rel="alternative" href="/atom.xml" title="LonelY" type="application/atom+xml">
   
@@ -170,7 +170,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      my-first-blog
+      RIP 路由协议
     </h1>
   
 
@@ -183,19 +183,57 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用github pages服务搭建博客的好处有：</p>
-<ol>
-<li>全是静态文件，访问速度快；</li>
-<li>免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台；</li>
-<li>可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的；</li>
-</ol>
+        <p>动态路由协议包括距离向量路由协议和链路状态路由协议。RIP（Routing InformationProtocols， </p>
+<p>路由信息协议）是使用最广泛的距离向量路由协议。RIP 是为小型网络环境设计的，因为这类协议的路 </p>
+<p>由学习及路由更新将产生较大的流量，占用过多的带宽。</p>
 <a id="more"></a>
 
-<ol start="4">
-<li>数据绝对安全，基于github的版本管理，想恢复到哪个历史版本都行；</li>
-<li>博客内容可以轻松打包、转移、发布到其它平台；</li>
-<li>等等；</li>
+<h1 id="RIP-概述"><a href="#RIP-概述" class="headerlink" title="RIP 概述"></a><strong>RIP 概述</strong></h1><p>RIP 是由Xerox 在70 年代开发的，最初定义在RFC1058 中。RIP 用两种数据包传输更新： </p>
+<p>更新和请求，每个有RIP 功能的路由器默认情况下每隔30 秒利用UDP 520 端口向与它直连 </p>
+<p>的网络邻居广播（RIP v1）或组播（RIP v2）路由更新。因此路由器不知道网络的全局情况， </p>
+<p>如果路由更新在网络上传播慢，将会导致网络收敛较慢，造成路由环路。为了避免路由环路， </p>
+<p>RIP 采用水平分割、毒性逆转、定义最大跳数、闪式更新、抑制计时5 个机制来避免路由环 </p>
+<p>路。 </p>
+<p>RIP 协议分为版本1 和版本2。不论是版本1 或版本2，都具备下面的特征： </p>
+<ol>
+<li>是距离向量路由协议； </li>
+<li>使用跳数（Hop Count）作为度量值； </li>
+<li>默认路由更新周期为30 秒；</li>
+<li>管理距离（AD）为120； </li>
+<li>支持触发更新； </li>
+<li>最大跳数为15 跳； </li>
+<li>支持等价路径,默认4 条,最大6 条； </li>
+<li>使用UDP520 端口进行路由更新。</li>
 </ol>
+<p>而RIPv1 和RIPv2 的区别如表 </p>
+<table>
+<thead>
+<tr>
+<th>RIPv1</th>
+<th>RIPv2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>在路由更新的过程中不携带子网信息</td>
+<td>在路由更新的过程中携带子网信息</td>
+</tr>
+<tr>
+<td>不提供认证</td>
+<td>提供明文和MD5认证</td>
+</tr>
+<tr>
+<td>不支持VLSM和CIDR</td>
+<td>支持VLSM和CIDR</td>
+</tr>
+<tr>
+<td>采用广播更新</td>
+<td>采用组播（224.0.0.9）更新</td>
+</tr>
+<tr>
+<td>有类别（Classful）路由协议</td>
+<td>无类别（Classless）路由协议</td>
+</tr>
+</tbody></table>
 
       
 
@@ -335,7 +373,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RIP-概述"><span class="toc-number">1.</span> <span class="toc-text">RIP 概述</span></a></li></ol>
                     </div>
                 </span>
             </div>
