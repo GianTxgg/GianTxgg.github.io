@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>小次郎</title>
+  
+  <subtitle>还没想好写什么</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://giantxgg.github.io/"/>
+  <updated>2019-08-14T12:10:41.923Z</updated>
+  <id>https://giantxgg.github.io/</id>
+  
+  <author>
+    <name>LY</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RIP 路由协议</title>
+    <link href="https://giantxgg.github.io/2019/08/09/my-first-blog/"/>
+    <id>https://giantxgg.github.io/2019/08/09/my-first-blog/</id>
+    <published>2019-08-09T09:20:39.000Z</published>
+    <updated>2019-08-14T12:10:41.923Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;动态路由协议包括距离向量路由协议和链路状态路由协议。RIP（Routing InformationProtocols,路由信息协议）是使用最广泛的距离向量路由协议。RIP 是为小型网络环境设计的，因为这类协议的路由学习及路由更新将产生较大的流量,占用过多的带宽。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
