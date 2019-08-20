@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://giantxgg.github.io/"/>
-  <updated>2019-08-20T03:56:23.948Z</updated>
+  <updated>2019-08-20T12:16:15.632Z</updated>
   <id>https://giantxgg.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>策略路由</title>
+    <link href="https://giantxgg.github.io/2019/08/20/ce-lue-lu-you/"/>
+    <id>https://giantxgg.github.io/2019/08/20/ce-lue-lu-you/</id>
+    <published>2019-08-20T12:15:12.000Z</published>
+    <updated>2019-08-20T12:16:15.632Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;strong&gt;策略路由&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;策略路由提供了一种根据网络管理者制定的策略来进行数据包转发的机制。基于策略的路由比传统路由能力更强，使用更灵活，它使用网络管理者不仅能够根据目的地址，而且能够根据协议类型、报文大小、应用或IP源地址来选择转发路径。策
+        
+      
+    
+    </summary>
+    
+    
+      <category term="路由协议" scheme="https://giantxgg.github.io/tags/%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>IP地址分类</title>
     <link href="https://giantxgg.github.io/2019/08/20/ip-di-zhi-fen-lei/"/>
     <id>https://giantxgg.github.io/2019/08/20/ip-di-zhi-fen-lei/</id>
     <published>2019-08-20T03:35:31.000Z</published>
-    <updated>2019-08-20T03:56:23.948Z</updated>
+    <updated>2019-08-20T03:58:50.857Z</updated>
     
     <summary type="html">
     

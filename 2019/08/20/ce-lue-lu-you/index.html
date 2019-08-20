@@ -4,8 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="RIP 路由协议, 小次郎">
-    <meta name="description" content="动态路由协议包括距离向量路由协议和链路状态路由协议。RIP（Routing InformationProtocols,路由信息协议）是使用最广泛的距离向量路由协议。RIP 是为小型网络环境设计的，因为这类协议的路由学习及路由更新将产生较大的">
+    <meta name="keywords" content="策略路由, 小次郎">
+    <meta name="description" content="策略路由
+策略路由提供了一种根据网络管理者制定的策略来进行数据包转发的机制。基于策略的路由比传统路由能力更强，使用更灵活，它使用网络管理者不仅能够根据目的地址，而且能够根据协议类型、报文大小、应用或IP源地址来选择转发路径。策略由路由映射表">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>RIP 路由协议 | 小次郎</title>
+    <title>策略路由 | 小次郎</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -260,13 +261,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        RIP 路由协议
+                        策略路由
                     </div>
                 </div>
             </div>
@@ -377,8 +378,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/RIP/" target="_blank">
-                                <span class="chip bg-color">RIP</span>
+                            <a href="/tags/路由协议/" target="_blank">
+                                <span class="chip bg-color">路由协议</span>
                             </a>
                         
                     </div>
@@ -392,21 +393,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-09
+                    2019-08-20
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        624
+                        1.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        5 分
                     </div>
                     
                 
@@ -422,83 +423,106 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>动态路由协议包括距离向量路由协议和链路状态路由协议。RIP（Routing InformationProtocols,路由信息协议）是使用最广泛的距离向量路由协议。RIP 是为小型网络环境设计的，因为这类协议的路由学习及路由更新将产生较大的流量,占用过多的带宽。</p>
-<a id="more"></a>
+                <p><strong>策略路由</strong></p>
+<p>策略路由提供了一种根据网络管理者制定的策略来进行数据包转发的机制。基于策略的路由比传统路由能力更强，使用更灵活，它使用网络管理者不仅能够根据目的地址，而且能够根据协议类型、报文大小、应用或IP源地址来选择转发路径。策略由路由映射表来定义。</p>
+<p><strong>实验一、基于源IP地址的策略路由配置</strong></p>
+<p><strong>实验目的：</strong></p>
+<p>1、用route-map定义路由策略。</p>
+<p>2、在接口下应用路由策略。</p>
+<p>3、基于源IP地址的策略路由的配置和调试。</p>
+<p><strong>实验拓朴：</strong></p>
+<p><img src="file:///C:%5CUsers%5CADMINI~1%5CAppData%5CLocal%5CTemp%5Cksohtml5876%5Cwps1.jpg" alt="img"> </p>
+<p><strong>实验步骤：</strong></p>
+<p>在路由器R1的f0/0接口应用IP策略路由CCNA，使得从主机PC2来的数据设置一跳地址为：172.16.12.2；从主机PC3来的数据设置下一跳地址为：172.16.21.2，所有其他的数据包正常转发，整个网络运行EIGRP路由协议。</p>
+<p><strong>配置ACL</strong></p>
+<p>R1(config)#access-list 1 permit 172.16.1.2</p>
+<p>R1(config)#access-list 2 permit 172.16.1.3</p>
+<p><strong>配置路由映射表</strong></p>
+<p>R1(config)#route-map CCNA permit 10</p>
+<p>R1(config-route-map)#match ip address 1</p>
+<p>R1(config-route-map)#set ip next-hop 172.16.12.2</p>
+<p>R1(config-route-map)#exit</p>
+<p>R1(config)#route-map CCNA permit 20</p>
+<p>R1(config-route-map)#match ip address 2</p>
+<p>R1(config-route-map)#set ip next-hop 172.16.21.2</p>
+<p><strong>应用策略路由</strong></p>
+<p>R1(config)#int f0/0</p>
+<p>R1(config-if)#ip policy route-map CCNA</p>
+<p><strong>实验调试：</strong></p>
+<p>1、<strong>查看路由路径</strong></p>
+<p>PC2#traceroute 172.16.2.2</p>
+<p>PC3#traceroute 172.16.2.2</p>
+<p>2、<strong>在R1上显示调试信息</strong></p>
+<p>R1#debug ip policy</p>
+<p>PC2：ping 172.16.2.2  </p>
+<p>PC6:ping 172.16.2.2</p>
+<p><strong>3、显示在哪些接口上应用了策略路由</strong></p>
+<p>R1#sh ip policy</p>
+<p><strong>4、显示定义的所有路由策略及路由策略匹配的情况</strong></p>
+<p><strong>实验二、基于数据包长度的策略路由配置</strong></p>
+<p><strong>实验目的：</strong></p>
+<p>1、用route-map定义路由策略。</p>
+<p>2、在接口下应用路由策略。</p>
+<p>3、基于数据包长度的策略路由的配置和调试。</p>
+<p><strong>实验拓朴：</strong></p>
+<p><img src="file:///C:%5CUsers%5CADMINI~1%5CAppData%5CLocal%5CTemp%5Cksohtml5876%5Cwps2.jpg" alt="img"> </p>
+<p><strong>实验步骤：</strong></p>
+<p>在R1的f0/0接口应用IP策略路由CCNP，使得对大小为“64-100”字节的数据包设置出接口为s1/0;数据包大小“101-100”字节的数据包设置出接口为“f0/1”,所有其他的数据包正常转发，整个网络运行EIGRP路由协议。</p>
+<p><strong>配置路由映射表</strong></p>
+<p>R1(config)#route-map CCNP permit 10</p>
+<p>R1(config-route-map)#match length 64 100</p>
+<p>R1(config-route-map)#set interface s1/0</p>
+<p>R1(config)#route-map CCNP permit 20</p>
+<p>R1(config-route-map)#match length 101 1000</p>
+<p>R1(config-route-map)#set interface f0/1</p>
+<p><strong>应用策略路由</strong></p>
+<p>R1(config)#int f0/0</p>
+<p>R1(config-if)#ip policy route-map CCNP</p>
+<p>R1(config-if)#exit</p>
+<p>R1(config)#ip local policy route-map CCNP</p>
+<p><strong>实验调试：</strong></p>
+<p><strong>1.在主机上执行扩展ping命令，在R1上显示调试信息。</strong></p>
+<p>PC2：ping 172.16.2.2 repeat 1 size 90</p>
+<p>PC2：ping 172.16.2.2 repeat 1 size 300</p>
+<p>PC2：ping 172.16.2.2 repeat 1 size 1200</p>
+<p><strong>2、**</strong>显示在哪些接口上应用了策略路由**</p>
+<p>R1#sh ip policy</p>
+<p><strong>3、显示定义的所有路由策略及路由策略匹配的情况</strong></p>
+<p>R1#sh route-map CCNP</p>
+<p><strong>实验三、基于应用的策略路由配置</strong></p>
+<p><strong>实验目的：</strong></p>
+<p>1、用route-map定义路由策略。</p>
+<p>2、在接口下应用路由策略。</p>
+<p>3、基于数据包长度的策略路由的配置和调试。</p>
+<p><strong>实验拓朴：</strong></p>
+<p><img src="file:///C:%5CUsers%5CADMINI~1%5CAppData%5CLocal%5CTemp%5Cksohtml5876%5Cwps3.jpg" alt="img"> </p>
+<p><strong>实验步骤：</strong></p>
+<p>在R1的f0/0接口应用IP策略路由CCIE，使得对HTTP数据包设置一跳地址为：172.16.12.2，并且设置IP数据包优先级为”flash”,为telnet数据包设置下一跳地址为：172.16.21.2，并且设置IP数据包优先级为：critical，所有其他的数据包正常转发，整个路由协议运行EIGRP。</p>
+<p><strong>配置R2的http与telnet访问</strong></p>
+<p>  R2(config)#ip http server</p>
+<p>R2(config)#line vty 0 4</p>
+<p>R2(config-line)#no login</p>
+<p>R2(config-line)#privilege level 15</p>
+<p><strong>配置扩展ACL</strong></p>
+<p>R1(config)#ip access-list extended HTTP</p>
+<p>R1(config-ext-nacl)#permit tcp any any eq 80</p>
+<p>R1(config-ext-nacl)#exit</p>
+<p>R1(config)#ip access-list extended TELNET</p>
+<p>R1(config-ext-nacl)#permit tcp any any eq 23</p>
+<p><strong>配置路由映射表</strong></p>
+<p>R1(config)#route-map CCIE permit 10</p>
+<p>R1(config-route-map)#match ip address HTTP</p>
+<p>R1(config-route-map)#set ip precedence flash</p>
+<p>R1(config-route-map)#set ip next-hop 172.16.12.2</p>
+<p>R1(config)#route-map CCIE permit 20</p>
+<p>R1(config-route-map)#match ip address TELNET</p>
+<p>R1(config-route-map)#set ip precedence critical</p>
+<p>R1(config-route-map)#set ip next-hop 172.16.21.2</p>
+<p><strong>应用路由映射表</strong></p>
+<p>R1(config)#int f0/0</p>
+<p>R1(config-if)#ip policy route-map CCIE</p>
+<p>R1(config)#ip local policy route-map CCIE</p>
 
-<h2 id="RIP-概述"><a href="#RIP-概述" class="headerlink" title="RIP 概述"></a><strong>RIP 概述</strong></h2><p>RIP 是由Xerox 在70 年代开发的，最初定义在RFC1058 中。RIP 用两种数据包传输更新:更新和请求,每个有RIP 功能的路由器默认情况下每隔30 秒利用UDP 520 端口向与它直连的网络邻居广播(RIP v1)或组播(RIP v2)路由更新。因此路由器不知道网络的全局情况,如果路由更新在网络上传播慢，将会导致网络收敛较慢，造成路由环路。为了避免路由环路， RIP 采用水平分割、毒性逆转、定义最大跳数、闪式更新、抑制计时5 个机制来避免路由环路。 </p>
-<p>RIP 协议分为版本1 和版本2。不论是版本1 或版本2，都具备下面的特征： </p>
-<ol>
-<li>是距离向量路由协议； </li>
-<li>使用跳数（Hop Count）作为度量值； </li>
-<li>默认路由更新周期为30 秒；</li>
-<li>管理距离（AD）为120； </li>
-<li>支持触发更新； </li>
-<li>最大跳数为15 跳； </li>
-<li>支持等价路径,默认4 条,最大6 条； </li>
-<li>使用UDP520 端口进行路由更新。</li>
-</ol>
-<p>而RIPv1 和RIPv2 的区别如表 </p>
-<table>
-<thead>
-<tr>
-<th>RIPv1</th>
-<th>RIPv2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>在路由更新的过程中不携带子网信息</td>
-<td>在路由更新的过程中携带子网信息</td>
-</tr>
-<tr>
-<td>不提供认证</td>
-<td>提供明文和MD5认证</td>
-</tr>
-<tr>
-<td>不支持VLSM和CIDR</td>
-<td>支持VLSM和CIDR</td>
-</tr>
-<tr>
-<td>采用广播更新</td>
-<td>采用组播（224.0.0.9）更新</td>
-</tr>
-<tr>
-<td>有类别（Classful）路由协议</td>
-<td>无类别（Classless）路由协议</td>
-</tr>
-</tbody></table>
-<p><img src="https://s2.ax1x.com/2019/08/19/m34VjP.png" alt></p>
-<p>首先保证直连的连通性</p>
-<p>在R1上:</p>
-<pre><code>R1(config)#interface fastEthernet 0/0 
-
-R1(config-if)#ip address 12.1.1.1 255.255.255.0 
-
-R1(config-if)#no shutdown  
-
-R1(config-if)#exit  
-
-R1(config)#interface loopback 0 
-
-R1(config-if)#ip address 11.1.1.1 255.255.255.0
-</code></pre><p>在R2上:</p>
-<pre><code>R2(config)#interface fastEthernet 1/0 
-
-R2(config-if)#ip address 23.1.1.2 255.255.255.0 
-
-R2(config-if)#no shutdown  
-
-R2(config-if)#exit 
-
-R2(config)#interface loopback 0 
-
-R2(config-if)#ip address 22.1.1.1 255.255.255.0
-</code></pre><p>在R3上:</p>
-<pre><code>R3(config)#interface fastEthernet 0/0
-R3(config-if)#ip address 23.1.1.3 255.255.255.0
-R3(config-if)#no shutdown 
-R3(config-if)#exit
-R3(config)#interface loopback 0
-R3(config-if)#ip address 33.1.1.1 255.255.255.0</code></pre>
             </div>
             <hr/>
 
@@ -656,9 +680,9 @@ R3(config-if)#ip address 33.1.1.1 255.255.255.0</code></pre>
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《RIP 路由协议》
+                    《策略路由》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/09/my-first-blog/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/20/ce-lue-lu-you/" property="cc:attributionName"
                rel="cc:attributionURL">
                 LY
             </a> 采用
@@ -698,9 +722,57 @@ R3(config-if)#ip address 33.1.1.1 255.255.255.0</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2019/08/20/ce-lue-lu-you/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="策略路由">
+                        
+                        <span class="card-title">策略路由</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            策略路由
+策略路由提供了一种根据网络管理者制定的策略来进行数据包转发的机制。基于策略的路由比传统路由能力更强，使用更灵活，它使用网络管理者不仅能够根据目的地址，而且能够根据协议类型、报文大小、应用或IP源地址来选择转发路径。策略由路由映射表
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            LY
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/路由协议/" target="_blank">
+                        <span class="chip bg-color">路由协议</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2019/08/20/ip-di-zhi-fen-lei/">
                     <div class="card-image">
@@ -721,9 +793,9 @@ R3(config-if)#ip address 33.1.1.1 255.255.255.0</code></pre>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -737,52 +809,6 @@ R3(config-if)#ip address 33.1.1.1 255.255.255.0</code></pre>
                     
                     <a href="/tags/IP地址/" target="_blank">
                         <span class="chip bg-color">IP地址</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/08/09/my-first-blog/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="RIP 路由协议">
-                        
-                        <span class="card-title">RIP 路由协议</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            动态路由协议包括距离向量路由协议和链路状态路由协议。RIP（Routing InformationProtocols,路由信息协议）是使用最广泛的距离向量路由协议。RIP 是为小型网络环境设计的，因为这类协议的路由学习及路由更新将产生较大的
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-09
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-user fa-fw"></i>
-                            LY
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/RIP/" target="_blank">
-                        <span class="chip bg-color">RIP</span>
                     </a>
                     
                 </div>
