@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://giantxgg.github.io/"/>
-  <updated>2019-08-20T02:01:20.267Z</updated>
+  <updated>2019-08-20T03:56:23.948Z</updated>
   <id>https://giantxgg.github.io/</id>
   
   <author>
@@ -17,11 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>IP地址分类</title>
+    <link href="https://giantxgg.github.io/2019/08/20/ip-di-zhi-fen-lei/"/>
+    <id>https://giantxgg.github.io/2019/08/20/ip-di-zhi-fen-lei/</id>
+    <published>2019-08-20T03:35:31.000Z</published>
+    <updated>2019-08-20T03:56:23.948Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;IP地址介绍及VLSM&quot;&gt;&lt;a href=&quot;#IP地址介绍及VLSM&quot; class=&quot;headerlink&quot; title=&quot;IP地址介绍及VLSM&quot;&gt;&lt;/a&gt;IP地址介绍及VLSM&lt;/h1&gt;&lt;h2 id=&quot;IP地址分类&quot;&gt;&lt;a href=&quot;#IP地址分类&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="IP地址" scheme="https://giantxgg.github.io/tags/IP%E5%9C%B0%E5%9D%80/"/>
+    
+  </entry>
+  
+  <entry>
     <title>RIP 路由协议</title>
     <link href="https://giantxgg.github.io/2019/08/09/my-first-blog/"/>
     <id>https://giantxgg.github.io/2019/08/09/my-first-blog/</id>
     <published>2019-08-09T09:20:39.000Z</published>
-    <updated>2019-08-20T02:01:20.267Z</updated>
+    <updated>2019-08-20T02:49:48.407Z</updated>
     
     <summary type="html">
     
