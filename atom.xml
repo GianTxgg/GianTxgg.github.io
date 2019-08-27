@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://giantxgg.github.io/"/>
-  <updated>2019-08-22T03:02:52.915Z</updated>
+  <updated>2019-08-27T04:45:53.667Z</updated>
   <id>https://giantxgg.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>上传绕过</title>
+    <link href="https://giantxgg.github.io/2019/08/27/shang-chuan-rao-guo/"/>
+    <id>https://giantxgg.github.io/2019/08/27/shang-chuan-rao-guo/</id>
+    <published>2019-08-27T04:34:59.000Z</published>
+    <updated>2019-08-27T04:45:53.667Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;上传漏洞过滤机制部分整理：&quot;&gt;&lt;a href=&quot;#上传漏洞过滤机制部分整理：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="上传绕过技术" scheme="https://giantxgg.github.io/tags/%E4%B8%8A%E4%BC%A0%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>策略路由</title>

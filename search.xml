@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>上传绕过</title>
+      <link href="/2019/08/27/shang-chuan-rao-guo/"/>
+      <url>/2019/08/27/shang-chuan-rao-guo/</url>
+      
+        <content type="html"><![CDATA[<h4 id="上传漏洞过滤机制部分整理："><a href="#上传漏洞过滤机制部分整理：" class="headerlink" title="上传漏洞过滤机制部分整理："></a><strong>上传漏洞过滤机制部分整理：</strong></h4><p><strong>1.</strong>$deny_ext = array();<br>//array()用于创建数组,通过匹配给定的字符，达到过滤的作用</p><p>2.$file_name = trim($_FILES[‘upload_file’][‘name’]);<br>//trim()用于去掉字符串两端的多余的空格</p><p>3.$file_name = deldot($file_name);<br> //删除文件名末尾的点</p><p>4.$file_ext = strrchr($file_name, ‘.’);<br>//搜索 “.” 在字符串中的位置，并返回从该位置到字符串结尾的所有字符</p><p>5.$file_ext = strtolower($file_ext);<br>//转换为小写</p><p>6.$file_ext = trim($file_ext);<br>//收尾去空</p><p>7.$file_ext = str_ireplace(‘::$DATA’, ‘’, $file_ext);<br>//去除字符串::$DATA</p><p>采用Windows文件流特性,必须是windows, 必须是php, 必须是那个源文件 php在window的时候如果文件名+”::$DATA”会把::$DATA之后的数据当成文件流处理,不会检测后缀名.且保持”::$DATA”之前的文件名,目的就是不检查后缀名</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 上传绕过技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>策略路由</title>
       <link href="/2019/08/20/ce-lue-lu-you/"/>
       <url>/2019/08/20/ce-lue-lu-you/</url>
