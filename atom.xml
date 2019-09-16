@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://giantxgg.github.io/"/>
-  <updated>2019-08-27T04:45:53.667Z</updated>
+  <updated>2019-09-16T06:43:06.269Z</updated>
   <id>https://giantxgg.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>firewall防火墙</title>
+    <link href="https://giantxgg.github.io/2019/09/16/firewall-fang-huo-qiang/"/>
+    <id>https://giantxgg.github.io/2019/09/16/firewall-fang-huo-qiang/</id>
+    <published>2019-09-16T06:20:29.000Z</published>
+    <updated>2019-09-16T06:43:06.269Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;​   
+        
+      
+    
+    </summary>
+    
+    
+      <category term="系统安全" scheme="https://giantxgg.github.io/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>上传绕过</title>
