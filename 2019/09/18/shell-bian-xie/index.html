@@ -449,20 +449,18 @@
 <p>举例：判断当前可用的空闲内存（free)大小，当低于1024MB时输出具体数值</p>
 <pre><code>#FreeCC=$(free -m|grep Mem|awk &#39;{print $4}&#39;)</code></pre><pre><code>#[ $FreeCC -lt 1024 ]&amp;&amp;echo ${FreeCC}MB</code></pre><h3 id="3-字符串比较"><a href="#3-字符串比较" class="headerlink" title="3.字符串比较"></a>3.字符串比较</h3><p>​    字符串比较通常用来检查用户输入、系统环境等是否满足条件，在提供交互式操作的shell脚本中，也可用来判断用户输入的位置参数是否符合要求。字符串比较常用的操作选项如下：<br>=     第一个字符串与第二个字符串相同<br>！=   第一个字符串与第二个字符串不相同<br>-z    检查字符串是否为空（zero),对于未定义或赋予空值的变量将视为空串</p>
 <p>举例：判断当前系统的语言环境，不是en.US时输出“Not en.US”</p>
-<h1 id="echo-LANG"><a href="#echo-LANG" class="headerlink" title="echo $LANG"></a>echo $LANG</h1><p>zh_CN.UTF-8</p>
-<h1 id="LANG-“en-US”-amp-amp-echo-“Not-en-US”"><a href="#LANG-“en-US”-amp-amp-echo-“Not-en-US”" class="headerlink" title="[ $LANG != “en.US” ]&amp;&amp;echo “Not en.US”"></a>[ $LANG != “en.US” ]&amp;&amp;echo “Not en.US”</h1><p>Not en.US</p>
-<p>举例：在shell脚本应用中，经常需要用户输入yes或no来确认某个任务，以下举例<br>可以作为展示，实际使用时还会根据变量“ACK”的取值分别执行进一步的操作。</p>
-<pre><code>#read -p &quot;是否覆盖现有文件（yes/no)?&quot; ACK</code></pre><p>是否覆盖现有文件（yes/no)?yes</p>
-<pre><code># echo $ACK
-
-yes</code></pre><pre><code># [ $ACK=&quot;yes&quot; ]&amp;&amp;echo &quot;覆盖&quot;
-
+<pre><code># echo $LANG
+zh_CN.UTF-8
+# [ $LANG != &quot;en.US&quot; ]&amp;&amp;echo &quot;Not en.US&quot;
+Not en.US</code></pre><p>举例：在shell脚本应用中，经常需要用户输入yes或no来确认某个任务，以下举例<br>可以作为展示，实际使用时还会根据变量“ACK”的取值分别执行进一步的操作。</p>
+<pre><code># read -p &quot;是否覆盖现有文件（yes/no)?&quot; ACK
+是否覆盖现有文件（yes/no)?yes
+# echo $ACK
+yes
+# [ $ACK=&quot;yes&quot; ]&amp;&amp;echo &quot;覆盖&quot;
 # read -p &quot;是否覆盖现有文件（yes/no)?&quot; ACK
-
 是否覆盖现有文件（yes/no)?no
-
 # [ $ACK=&quot;no&quot; ]&amp;&amp;echo &quot;不覆盖&quot;
-
 不覆盖</code></pre><h3 id="4-逻辑测试"><a href="#4-逻辑测试" class="headerlink" title="4.逻辑测试"></a>4.逻辑测试</h3><p>逻辑测试指的是判断两个或多个条件之间的依赖关系。当系统任务取决于多个不同的条件时，判断是根据这些条件同时成立还是只要有其中一个成立等情况，需要有一个测试的过程，常用的逻辑测试操作如下，使用时放在不同的测试语句或命令之间。<br>    &amp;&amp;   逻辑与，表示而且，只有当前后两个条件都成立时，整个测试的命令返回值才为0（结果成立）。使用test命令测试时可改为-a<br>    ||   逻辑或，表示或者，只要前后两个条件有一个成立，则整个测试的命令返回值为0（结果成立）。使用test命令测试时可改为-o<br>    !:   逻辑否，表示不，只有当指定的条件不成立时，整个测试命令的返回值才为0（结果成立）<br>举例：判断Linux系统的内核版本是否大于2.4</p>
 <pre><code># Mnum=$(uname -r|awk -F. &#39;{print $1}&#39;)
 
