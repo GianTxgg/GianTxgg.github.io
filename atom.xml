@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://giantxgg.github.io/"/>
-  <updated>2019-09-16T06:43:06.269Z</updated>
+  <updated>2019-09-18T09:25:10.512Z</updated>
   <id>https://giantxgg.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>shell编写</title>
+    <link href="https://giantxgg.github.io/2019/09/18/shell-bian-xie/"/>
+    <id>https://giantxgg.github.io/2019/09/18/shell-bian-xie/</id>
+    <published>2019-09-18T08:43:01.000Z</published>
+    <updated>2019-09-18T09:25:10.512Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Shell编程之条件语句&quot;&gt;&lt;a href=&quot;#Shell编程之条件语句&quot; class=&quot;headerlink&quot; title=&quot;Shell编程之条件语句&quot;&gt;&lt;/a&gt;Shell编程之条件语句&lt;/h1&gt;&lt;h2 id=&quot;一-条件测试&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="系统安全" scheme="https://giantxgg.github.io/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>firewall防火墙</title>
