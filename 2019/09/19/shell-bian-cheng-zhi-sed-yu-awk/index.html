@@ -4,9 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="策略路由, 小次郎">
-    <meta name="description" content="策略路由
-策略路由提供了一种根据网络管理者制定的策略来进行数据包转发的机制。基于策略的路由比传统路由能力更强，使用更灵活，它使用网络管理者不仅能够根据目的地址，而且能够根据协议类型、报文大小、应用或IP源地址来选择转发路径。策略由路由映射表">
+    <meta name="keywords" content="shell编程之sed与awk, 小次郎">
+    <meta name="description" content="sed命令的常用操作sed是一种流编辑器，它是文本处理中非常中的工具，能够完美的配合正则表达式使用，功能不同凡响。处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），接着用sed命令处理缓冲区中的内容，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>策略路由 | 小次郎</title>
+    <title>shell编程之sed与awk | 小次郎</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -261,13 +260,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        策略路由
+                        shell编程之sed与awk
                     </div>
                 </div>
             </div>
@@ -378,8 +377,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/路由协议/" target="_blank">
-                                <span class="chip bg-color">路由协议</span>
+                            <a href="/tags/系统安全/" target="_blank">
+                                <span class="chip bg-color">系统安全</span>
                             </a>
                         
                     </div>
@@ -393,21 +392,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-20
+                    2019-09-19
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.1k
+                        2.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        5 分
+                        7 分
                     </div>
                     
                 
@@ -423,102 +422,202 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>策略路由</strong></p>
-<p>策略路由提供了一种根据网络管理者制定的策略来进行数据包转发的机制。基于策略的路由比传统路由能力更强，使用更灵活，它使用网络管理者不仅能够根据目的地址，而且能够根据协议类型、报文大小、应用或IP源地址来选择转发路径。策略由路由映射表来定义。</p>
-<h2 id="实验一、基于源IP地址的策略路由配置"><a href="#实验一、基于源IP地址的策略路由配置" class="headerlink" title="实验一、基于源IP地址的策略路由配置"></a><strong>实验一、基于源IP地址的策略路由配置</strong></h2><p><strong>实验目的：</strong></p>
-<p>1、用route-map定义路由策略。</p>
-<p>2、在接口下应用路由策略。</p>
-<p>3、基于源IP地址的策略路由的配置和调试。</p>
-<p><strong>实验拓朴：</strong></p>
-<p><img src="https://s2.ax1x.com/2019/08/21/mNbcmF.jpg" alt></p>
-<p><strong>实验步骤：</strong></p>
-<p>在路由器R1的f0/0接口应用IP策略路由CCNA，使得从主机PC2来的数据设置一跳地址为：172.16.12.2；从主机PC3来的数据设置下一跳地址为：172.16.21.2，所有其他的数据包正常转发，整个网络运行EIGRP路由协议。</p>
-<p><strong>配置ACL</strong></p>
-<p>R1(config)#access-list 1 permit 172.16.1.2</p>
-<p>R1(config)#access-list 2 permit 172.16.1.3</p>
-<p><strong>配置路由映射表</strong></p>
-<p>R1(config)#route-map CCNA permit 10</p>
-<p>R1(config-route-map)#match ip address 1</p>
-<p>R1(config-route-map)#set ip next-hop 172.16.12.2</p>
-<p>R1(config-route-map)#exit</p>
-<p>R1(config)#route-map CCNA permit 20</p>
-<p>R1(config-route-map)#match ip address 2</p>
-<p>R1(config-route-map)#set ip next-hop 172.16.21.2</p>
-<p><strong>应用策略路由</strong></p>
-<p>R1(config)#int f0/0</p>
-<p>R1(config-if)#ip policy route-map CCNA</p>
-<p><strong>实验调试：</strong></p>
-<p>1、<strong>查看路由路径</strong></p>
-<p>PC2#traceroute 172.16.2.2</p>
-<p>PC3#traceroute 172.16.2.2</p>
-<p>2、<strong>在R1上显示调试信息</strong></p>
-<p>R1#debug ip policy</p>
-<p>PC2：ping 172.16.2.2  </p>
-<p>PC6:ping 172.16.2.2</p>
-<p><strong>3、显示在哪些接口上应用了策略路由</strong></p>
-<p>R1#sh ip policy</p>
-<p><strong>4、显示定义的所有路由策略及路由策略匹配的情况</strong></p>
-<h2 id="实验二、基于数据包长度的策略路由配置"><a href="#实验二、基于数据包长度的策略路由配置" class="headerlink" title="实验二、基于数据包长度的策略路由配置"></a><strong>实验二、基于数据包长度的策略路由配置</strong></h2><p><strong>实验目的：</strong></p>
-<p>1、用route-map定义路由策略。</p>
-<p>2、在接口下应用路由策略。</p>
-<p>3、基于数据包长度的策略路由的配置和调试。</p>
-<p><strong>实验拓朴：</strong></p>
-<p><img src="https://s2.ax1x.com/2019/08/21/mNbqTH.jpg" alt> </p>
-<p><strong>实验步骤：</strong></p>
-<p>在R1的f0/0接口应用IP策略路由CCNP，使得对大小为“64-100”字节的数据包设置出接口为s1/0;数据包大小“101-100”字节的数据包设置出接口为“f0/1”,所有其他的数据包正常转发，整个网络运行EIGRP路由协议。</p>
-<p><strong>配置路由映射表</strong></p>
-<p>R1(config)#route-map CCNP permit 10</p>
-<p>R1(config-route-map)#match length 64 100</p>
-<p>R1(config-route-map)#set interface s1/0</p>
-<p>R1(config)#route-map CCNP permit 20</p>
-<p>R1(config-route-map)#match length 101 1000</p>
-<p>R1(config-route-map)#set interface f0/1</p>
-<p><strong>应用策略路由</strong></p>
-<p>R1(config)#int f0/0</p>
-<p>R1(config-if)#ip policy route-map CCNP</p>
-<p>R1(config-if)#exit</p>
-<p>R1(config)#ip local policy route-map CCNP</p>
-<p><strong>实验调试：</strong></p>
-<p><strong>1.在主机上执行扩展ping命令，在R1上显示调试信息。</strong></p>
-<p>PC2：ping 172.16.2.2 repeat 1 size 90</p>
-<p>PC2：ping 172.16.2.2 repeat 1 size 300</p>
-<p>PC2：ping 172.16.2.2 repeat 1 size 1200</p>
-<p><strong>2、**</strong>显示在哪些接口上应用了策略路由**</p>
-<p>R1#sh ip policy</p>
-<p><strong>3、显示定义的所有路由策略及路由策略匹配的情况</strong></p>
-<p>R1#sh route-map CCNP</p>
-<h2 id="实验三、基于应用的策略路由配置"><a href="#实验三、基于应用的策略路由配置" class="headerlink" title="实验三、基于应用的策略路由配置"></a><strong>实验三、基于应用的策略路由配置</strong></h2><p><strong>实验目的：</strong></p>
-<p>1、用route-map定义路由策略。</p>
-<p>2、在接口下应用路由策略。</p>
-<p>3、基于数据包长度的策略路由的配置和调试。</p>
-<p><strong>实验拓朴：</strong></p>
-<p><img src="https://s2.ax1x.com/2019/08/21/mNqpX8.jpg" alt></p>
-<p><strong>实验步骤：</strong></p>
-<p>在R1的f0/0接口应用IP策略路由CCIE，使得对HTTP数据包设置一跳地址为：172.16.12.2，并且设置IP数据包优先级为”flash”,为telnet数据包设置下一跳地址为：172.16.21.2，并且设置IP数据包优先级为：critical，所有其他的数据包正常转发，整个路由协议运行EIGRP。</p>
-<p><strong>配置R2的http与telnet访问</strong></p>
-<p>  R2(config)#ip http server</p>
-<p>R2(config)#line vty 0 4</p>
-<p>R2(config-line)#no login</p>
-<p>R2(config-line)#privilege level 15</p>
-<p><strong>配置扩展ACL</strong></p>
-<p>R1(config)#ip access-list extended HTTP</p>
-<p>R1(config-ext-nacl)#permit tcp any any eq 80</p>
-<p>R1(config-ext-nacl)#exit</p>
-<p>R1(config)#ip access-list extended TELNET</p>
-<p>R1(config-ext-nacl)#permit tcp any any eq 23</p>
-<p><strong>配置路由映射表</strong></p>
-<p>R1(config)#route-map CCIE permit 10</p>
-<p>R1(config-route-map)#match ip address HTTP</p>
-<p>R1(config-route-map)#set ip precedence flash</p>
-<p>R1(config-route-map)#set ip next-hop 172.16.12.2</p>
-<p>R1(config)#route-map CCIE permit 20</p>
-<p>R1(config-route-map)#match ip address TELNET</p>
-<p>R1(config-route-map)#set ip precedence critical</p>
-<p>R1(config-route-map)#set ip next-hop 172.16.21.2</p>
-<p><strong>应用路由映射表</strong></p>
-<p>R1(config)#int f0/0</p>
-<p>R1(config-if)#ip policy route-map CCIE</p>
-<p>R1(config)#ip local policy route-map CCIE</p>
+                <h1 id="sed命令的常用操作"><a href="#sed命令的常用操作" class="headerlink" title="sed命令的常用操作"></a>sed命令的常用操作</h1><p>sed是一种流编辑器，它是文本处理中非常中的工具，能够完美的配合正则表达式使用，功能不同凡响。处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。接着处理下一行，这样不断重复，直到文件末尾。文件内容并没有 改变，除非你使用重定向存储输出或者加上 -i 参数(此时处理结果不会发送值屏幕)</p>
+<h2 id="一-正则表达式"><a href="#一-正则表达式" class="headerlink" title="一.正则表达式"></a>一.正则表达式</h2><h3 id="1-基础正则表达式"><a href="#1-基础正则表达式" class="headerlink" title="1.基础正则表达式"></a>1.基础正则表达式</h3><table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\</td>
+<td>转义字符，用于取消特殊符号的含义，如：!\、\n等</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串的开始位置，如: ^world 匹配以world 开头的行</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串的结束位置，如: world$匹配以world结尾的行</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.</td>
+<td>匹配除\n (换行)之外的任意一个字符</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配前面的子表达式0次或者多次</td>
+</tr>
+<tr>
+<td>[list]</td>
+<td>匹配list列表中的一个字符，如: [0-9] 匹配任一位数字</td>
+</tr>
+<tr>
+<td>[^list]</td>
+<td>匹配不在list列表中的一个字符，如: [^0-9] 匹配任意-” 位非数字字符</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>匹配前面的子表达式n次，如: [0-9]{2} 匹配两位数字</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>匹配前面的子表达式不少于n次，如: [0-9]{2,} 表示两位及两位以上数字</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>匹配前面的子表达式n到m次，如: [a-z]{2,3} 匹配两到三位的小写字母</td>
+</tr>
+</tbody></table>
+<h3 id="2-扩展正则表达式"><a href="#2-扩展正则表达式" class="headerlink" title="2.扩展正则表达式"></a>2.扩展正则表达式</h3><table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>匹配前面的子表达式1次以上，如: go+d, 将匹配至少一个o</td>
+</tr>
+<tr>
+<td>？</td>
+<td>匹配前面的子 表达式0次或者1次，如go?d, 将匹配gd或god</td>
+</tr>
+<tr>
+<td>（）</td>
+<td>将()号中的字符串作为一个整体，如: (xzy)+, 将匹配xyz 整体1次以上</td>
+</tr>
+<tr>
+<td>|</td>
+<td>以或的方式匹配字符串，如: good|great, 将匹配good或者great</td>
+</tr>
+</tbody></table>
+<h2 id="二-sed工具概述"><a href="#二-sed工具概述" class="headerlink" title="二.sed工具概述"></a>二.sed工具概述</h2><h3 id="1-sed基本语法"><a href="#1-sed基本语法" class="headerlink" title="1.sed基本语法"></a>1.sed基本语法</h3><p>命令语法:<br>sed -e ‘编辑指令’ 文件1 文件2…<br>sed -n -e ‘编辑指令’ 文件1 文件2…<br>sed -i -e ‘编辑指令’ 文件1 文件2….<br>常用选项:<br>-e 指定要执行的命令，只有一个编辑命令时可省略。<br>-n只输出处理后的行，读入时不显示。<br>-i 直接编辑文件，而不输出结果。</p>
+<p>编辑指令格式: [地址 1][地址2]操作[参数]<br>与grep一样，Sed在文件查找时也可以使用正则表达式和各种元字符。这里的“地址”就可以是正则表达式，也可以是数字、$,如果没有地址就代表是所有的行。常用的“操作”及作用如表10-4所示。“参数” -般用g代表只要符合条件，全部都进行处理。</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>p</td>
+<td>输出指定的行</td>
+</tr>
+<tr>
+<td>d</td>
+<td>删除指定的行</td>
+</tr>
+<tr>
+<td>s</td>
+<td>字串替换，格式：“行范围s/旧字符串/新字符串/g”</td>
+</tr>
+<tr>
+<td>r</td>
+<td>读取指定文件</td>
+</tr>
+<tr>
+<td>w</td>
+<td>保存为文件</td>
+</tr>
+<tr>
+<td>i</td>
+<td>插入，在当前行前面插入一行或多行</td>
+</tr>
+</tbody></table>
+<h3 id="2-用法实例"><a href="#2-用法实例" class="headerlink" title="2.用法实例"></a>2.用法实例</h3><p><strong>打印</strong></p>
+<p>打印出passwd中以bash结尾的内容 </p>
+<pre><code> sed -n &#39;/bash$/p&#39; passwd
+ // 其中参数-n仅显示script处理后的结果 $是匹配字符串的结束 p是sed中的打印</code></pre><p>打印出passwd中以r开头的内容 </p>
+<pre><code> sed -n &#39;/^r/p&#39; passwd
+  // 其中参数-n仅显示script处理后的结果 ^是匹配字符串的开始 p是sed中的打印</code></pre><p>打印passwd中3-8行的内容 </p>
+<pre><code>sed -n &#39;3,8p&#39; passwd
+  // 其中参数-n仅显示script处理后的结果  3,8是表示范围  p是sed中的打印</code></pre><p>打印passwd中的每一行 到第五行退出 </p>
+<pre><code> sed  &#39;5q&#39; passwd</code></pre><p><strong>删除</strong></p>
+<p>删除passwd中以kute开头的内容 </p>
+<pre><code>  sed -i &#39;/^kute/d&#39; passwd
+  // 其中参数-i为直接编辑文件 ^是匹配字符串的开始 d是sed的删除命令</code></pre><p>删除passwd中包含docker内容的行 </p>
+<pre><code>  sed -i &#39;/docker/d&#39; passwd
+  // 其中参数-i为直接编辑文件 d是sed的删除命令</code></pre><p>删除passwd中第三行的首个字符d </p>
+<pre><code> sed -i &#39;3s/^d//&#39; passwd
+  // 将首个字符设置为空 以达到删除字符的目的</code></pre><p>删除passwd中第三行的首个字符d</p>
+<pre><code> sed -ri &#39;3s/d(.*)/\1/&#39; passwd
+  // 截取除首个字母之外的所有字符  以达到删除字符的目的</code></pre><p>删除passwd中第三行的最后一个字符n </p>
+<pre><code> sed -ri &#39;1s/(.*)n$/\1/&#39; passwd
+  // 截取除了最后一个字母之外的所有字符 以达到删除字符的目的</code></pre><p>删除passwd中第三行的最后一个字符n </p>
+<pre><code>sed -i &#39;3s/n$//&#39; passwd
+  // 将最后一个字符设置为空 以达到删除字符的目的</code></pre><p><strong>截取</strong></p>
+<p>将passwd中所有的nologin全部替换成hhh </p>
+<pre><code>  sed -nr &#39;/bash$/s/(.*):\w:[0-9]+:[0-9]+:.*:(.*):.*/\1 \2/p&#39; passwd
+  // -r 相当于转义字符 s替换指定内容 （）截取的内容 \w 匹配字母、数字、下划线或汉字 + 重复一次或更多次 \1 自动命名的组</code></pre><p><strong>替换</strong></p>
+<p>将passwd中所有的nologin全部替换成hhh </p>
+<pre><code> sed -i &#39;s/nologin/hhh/g&#39; passwd
+  // s//需要替换的内容 /g 全面替换标记</code></pre><p>将passwd中1-9行的nologin全部替换成hhh </p>
+<pre><code> sed -i &#39;1,9s/nologin/hhh/g&#39; passwd
+  // 1,9s//需要替换的内容 /g 全面替换标记</code></pre><p><strong>插入</strong></p>
+<p>在passwd中第五行上插入内容 </p>
+<pre><code> sed -i &#39;5i\hello&#39; passwd
+  // i\ 在当前行上面插入文本</code></pre><p>在passwd中第6行下追加内容 </p>
+<pre><code>sed -i &#39;6a\hello&#39; passwd
+  // a\ 在当前行下面插入文本</code></pre><p>将passwd第五行修改为hello world </p>
+<pre><code> sed -i &#39;5c\hello world&#39; passwd
+  // c\ 把选定的行改为新的文本</code></pre><p>在passwd每一行的行首添加字符# </p>
+<pre><code>sed -i &#39;s/^/#&amp;/g&#39; passwd
+  // &amp; 已匹配字符串标记</code></pre><p>在passwd1-5行的行首添加字符# </p>
+<pre><code>sed -i &#39;1,5s/^/#&amp;/&#39; passwd
+  // 1,5s 在1-5行操作</code></pre><p>在passwd中每一行的最后添加# </p>
+<pre><code>sed -i &#39;s/$/&amp;#/g&#39; passwd
+  // $匹配字符串的最后 &amp;已匹配字符串标记</code></pre><p>在passwd最后一行后插入一行 </p>
+<pre><code>sed -i &#39;$a\qyeyeyowowo&#39; passwd
+  // $匹配最后  a\ 在当前行下面插入文本</code></pre><p>在passwd第一行前面插入一行 </p>
+<pre><code>sed -i &#39;1i\qyeyeyowowo&#39; passwd
+  // 1i\ 第一行的上面追加新的文本</code></pre><p><strong>转换</strong></p>
+<p>将字符串中的abcde转换为12345 </p>
+<pre><code>  sed -i &#39;y/abcde/12345/&#39; file
+  // y表示把一个字符翻译为另外的字符（但是不用于正则表达式）</code></pre><h2 id="二-awk工具介绍"><a href="#二-awk工具介绍" class="headerlink" title="二.awk工具介绍"></a>二.awk工具介绍</h2><p>​    Awk是一个功能强大的编辑工具，用于在Linux/UNIX下对文本和数据进行处理。数据可以来自一个或多个文件，也可以为其他命令的输出，常作为脚本来使用。在执行操作时，Awk逐行读取文本，默认以空格为分隔符进行分隔，将分隔所得的各个字段保存到内建变量中，对比该行是否与给定的模式相匹配，并按模式或者条件执行编辑命令，也可从脚本中调用编辑指令过滤输出相应内容。</p>
+<h3 id="1-awk基本语法"><a href="#1-awk基本语法" class="headerlink" title="1.awk基本语法"></a>1.awk基本语法</h3><p>Awk的两种语法格式:<br>awk[选项] ‘模式或条件 {编辑指令}’ 文件1文件2<br>awk -f 脚本文件 文件1文件2</p>
+<p>​    在Awk语句中，模式部分决定何时对数据进行操作，若省略则后续动作时刻保持执行状态，模式可以为条件语句、复合语句或正则表达式等。每条编辑指令可以包含多条语句，多条语句之间要使用分号或者空格分隔的多个区域。常用选项F定义字段分隔符，默认以空格或者制表符作为分隔符。</p>
+<p>​    Awk提供了很多内置变量，经常用于处理文本，了解这些内置变量的使用是很有必要的，如表所示：</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FS</td>
+<td>指定每行文本的字段分隔符，缺省为空格或制表位</td>
+</tr>
+<tr>
+<td>NF</td>
+<td>当前处理的行的字段个数</td>
+</tr>
+<tr>
+<td>NR</td>
+<td>当前处理的行的行号(序数)</td>
+</tr>
+<tr>
+<td>$0</td>
+<td>当前处理的行的整行内容</td>
+</tr>
+<tr>
+<td>$n</td>
+<td>当前处理行的第n个字段(第n列)</td>
+</tr>
+</tbody></table>
 
             </div>
             <hr/>
@@ -677,9 +776,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《策略路由》
+                    《shell编程之sed与awk》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/20/ce-lue-lu-you/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/19/shell-bian-cheng-zhi-sed-yu-awk/" property="cc:attributionName"
                rel="cc:attributionURL">
                 LY
             </a> 采用
@@ -719,30 +818,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/08/27/shang-chuan-rao-guo/">
+                <a href="/2019/09/19/shell-bian-cheng-zhi-sed-yu-awk/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="上传绕过">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="shell编程之sed与awk">
                         
-                        <span class="card-title">上传绕过</span>
+                        <span class="card-title">shell编程之sed与awk</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            上传漏洞过滤机制部分整理：1.$deny_ext = array();//array()用于创建数组,通过匹配给定的字符，达到过滤的作用
-2.$file_name = trim($_FILES[‘upload_file’][‘name’])
+                            sed命令的常用操作sed是一种流编辑器，它是文本处理中非常中的工具，能够完美的配合正则表达式使用，功能不同凡响。处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），接着用sed命令处理缓冲区中的内容，
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -751,11 +850,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/上传绕过技术/" target="_blank">
-                        <span class="chip bg-color">上传绕过技术</span>
+                    <a href="/tags/系统安全/" target="_blank">
+                        <span class="chip bg-color">系统安全</span>
                     </a>
                     
                 </div>
@@ -769,26 +869,24 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/20/ip-di-zhi-fen-lei/">
+                <a href="/2019/09/18/shell-bian-xie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="IP地址分类">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="shell编写">
                         
-                        <span class="card-title">IP地址分类</span>
+                        <span class="card-title">shell编写</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            IP地址介绍及VLSMIP地址分类A类网络地址范围第一个字节的第一位必须为0，第一个字节的取值为0-127
-即: 0xxxxxxx        取值范围是:  0000000-01111111 (0-127)
-1.1.1.1/8     
+                            Shell编程之条件语句一.条件测试​    使用shell脚本程序具备一定的“智能”，面临的第一个问题就是如何区分不同的情况以确定执行何种操作。例如，当磁盘使用率超过95%时发送警告信息；当备份目录存在时能够自动创建；当源码编译程序时若配
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-18
                             </span>
                         <span class="publish-author">
                             
@@ -801,8 +899,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/IP地址/" target="_blank">
-                        <span class="chip bg-color">IP地址</span>
+                    <a href="/tags/系统安全/" target="_blank">
+                        <span class="chip bg-color">系统安全</span>
                     </a>
                     
                 </div>
