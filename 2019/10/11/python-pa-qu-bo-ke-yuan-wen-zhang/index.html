@@ -4,9 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="策略路由, 小次郎">
-    <meta name="description" content="策略路由
-策略路由提供了一种根据网络管理者制定的策略来进行数据包转发的机制。基于策略的路由比传统路由能力更强，使用更灵活，它使用网络管理者不仅能够根据目的地址，而且能够根据协议类型、报文大小、应用或IP源地址来选择转发路径。策略由路由映射表">
+    <meta name="keywords" content="python爬取博客园文章, 小次郎">
+    <meta name="description" content="import requests
+from bs4 import BeautifulSoup
+import re
+import urllib.request
+import sqlite3
+
+res = requests.get(&amp;#39;ht">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>策略路由 | 小次郎</title>
+    <title>python爬取博客园文章 | 小次郎</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -261,13 +266,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        策略路由
+                        python爬取博客园文章
                     </div>
                 </div>
             </div>
@@ -378,8 +383,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/路由协议/" target="_blank">
-                                <span class="chip bg-color">路由协议</span>
+                            <a href="/tags/python/" target="_blank">
+                                <span class="chip bg-color">python</span>
                             </a>
                         
                     </div>
@@ -393,21 +398,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-20
+                    2019-10-11
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.1k
+                        225
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        5 分
+                        1 分
                     </div>
                     
                 
@@ -423,103 +428,51 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>策略路由</strong></p>
-<p>策略路由提供了一种根据网络管理者制定的策略来进行数据包转发的机制。基于策略的路由比传统路由能力更强，使用更灵活，它使用网络管理者不仅能够根据目的地址，而且能够根据协议类型、报文大小、应用或IP源地址来选择转发路径。策略由路由映射表来定义。</p>
-<h2 id="实验一、基于源IP地址的策略路由配置"><a href="#实验一、基于源IP地址的策略路由配置" class="headerlink" title="实验一、基于源IP地址的策略路由配置"></a><strong>实验一、基于源IP地址的策略路由配置</strong></h2><p><strong>实验目的：</strong></p>
-<p>1、用route-map定义路由策略。</p>
-<p>2、在接口下应用路由策略。</p>
-<p>3、基于源IP地址的策略路由的配置和调试。</p>
-<p><strong>实验拓朴：</strong></p>
-<p><img src="https://s2.ax1x.com/2019/08/21/mNbcmF.jpg" alt></p>
-<p><strong>实验步骤：</strong></p>
-<p>在路由器R1的f0/0接口应用IP策略路由CCNA，使得从主机PC2来的数据设置一跳地址为：172.16.12.2；从主机PC3来的数据设置下一跳地址为：172.16.21.2，所有其他的数据包正常转发，整个网络运行EIGRP路由协议。</p>
-<p><strong>配置ACL</strong></p>
-<p>R1(config)#access-list 1 permit 172.16.1.2</p>
-<p>R1(config)#access-list 2 permit 172.16.1.3</p>
-<p><strong>配置路由映射表</strong></p>
-<p>R1(config)#route-map CCNA permit 10</p>
-<p>R1(config-route-map)#match ip address 1</p>
-<p>R1(config-route-map)#set ip next-hop 172.16.12.2</p>
-<p>R1(config-route-map)#exit</p>
-<p>R1(config)#route-map CCNA permit 20</p>
-<p>R1(config-route-map)#match ip address 2</p>
-<p>R1(config-route-map)#set ip next-hop 172.16.21.2</p>
-<p><strong>应用策略路由</strong></p>
-<p>R1(config)#int f0/0</p>
-<p>R1(config-if)#ip policy route-map CCNA</p>
-<p><strong>实验调试：</strong></p>
-<p>1、<strong>查看路由路径</strong></p>
-<p>PC2#traceroute 172.16.2.2</p>
-<p>PC3#traceroute 172.16.2.2</p>
-<p>2、<strong>在R1上显示调试信息</strong></p>
-<p>R1#debug ip policy</p>
-<p>PC2：ping 172.16.2.2  </p>
-<p>PC6:ping 172.16.2.2</p>
-<p><strong>3、显示在哪些接口上应用了策略路由</strong></p>
-<p>R1#sh ip policy</p>
-<p><strong>4、显示定义的所有路由策略及路由策略匹配的情况</strong></p>
-<h2 id="实验二、基于数据包长度的策略路由配置"><a href="#实验二、基于数据包长度的策略路由配置" class="headerlink" title="实验二、基于数据包长度的策略路由配置"></a><strong>实验二、基于数据包长度的策略路由配置</strong></h2><p><strong>实验目的：</strong></p>
-<p>1、用route-map定义路由策略。</p>
-<p>2、在接口下应用路由策略。</p>
-<p>3、基于数据包长度的策略路由的配置和调试。</p>
-<p><strong>实验拓朴：</strong></p>
-<p><img src="https://s2.ax1x.com/2019/08/21/mNbqTH.jpg" alt> </p>
-<p><strong>实验步骤：</strong></p>
-<p>在R1的f0/0接口应用IP策略路由CCNP，使得对大小为“64-100”字节的数据包设置出接口为s1/0;数据包大小“101-100”字节的数据包设置出接口为“f0/1”,所有其他的数据包正常转发，整个网络运行EIGRP路由协议。</p>
-<p><strong>配置路由映射表</strong></p>
-<p>R1(config)#route-map CCNP permit 10</p>
-<p>R1(config-route-map)#match length 64 100</p>
-<p>R1(config-route-map)#set interface s1/0</p>
-<p>R1(config)#route-map CCNP permit 20</p>
-<p>R1(config-route-map)#match length 101 1000</p>
-<p>R1(config-route-map)#set interface f0/1</p>
-<p><strong>应用策略路由</strong></p>
-<p>R1(config)#int f0/0</p>
-<p>R1(config-if)#ip policy route-map CCNP</p>
-<p>R1(config-if)#exit</p>
-<p>R1(config)#ip local policy route-map CCNP</p>
-<p><strong>实验调试：</strong></p>
-<p><strong>1.在主机上执行扩展ping命令，在R1上显示调试信息。</strong></p>
-<p>PC2：ping 172.16.2.2 repeat 1 size 90</p>
-<p>PC2：ping 172.16.2.2 repeat 1 size 300</p>
-<p>PC2：ping 172.16.2.2 repeat 1 size 1200</p>
-<p><strong>2、**</strong>显示在哪些接口上应用了策略路由**</p>
-<p>R1#sh ip policy</p>
-<p><strong>3、显示定义的所有路由策略及路由策略匹配的情况</strong></p>
-<p>R1#sh route-map CCNP</p>
-<h2 id="实验三、基于应用的策略路由配置"><a href="#实验三、基于应用的策略路由配置" class="headerlink" title="实验三、基于应用的策略路由配置"></a><strong>实验三、基于应用的策略路由配置</strong></h2><p><strong>实验目的：</strong></p>
-<p>1、用route-map定义路由策略。</p>
-<p>2、在接口下应用路由策略。</p>
-<p>3、基于数据包长度的策略路由的配置和调试。</p>
-<p><strong>实验拓朴：</strong></p>
-<p><img src="https://s2.ax1x.com/2019/08/21/mNqpX8.jpg" alt></p>
-<p><strong>实验步骤：</strong></p>
-<p>在R1的f0/0接口应用IP策略路由CCIE，使得对HTTP数据包设置一跳地址为：172.16.12.2，并且设置IP数据包优先级为”flash”,为telnet数据包设置下一跳地址为：172.16.21.2，并且设置IP数据包优先级为：critical，所有其他的数据包正常转发，整个路由协议运行EIGRP。</p>
-<p><strong>配置R2的http与telnet访问</strong></p>
-<p>  R2(config)#ip http server</p>
-<p>R2(config)#line vty 0 4</p>
-<p>R2(config-line)#no login</p>
-<p>R2(config-line)#privilege level 15</p>
-<p><strong>配置扩展ACL</strong></p>
-<p>R1(config)#ip access-list extended HTTP</p>
-<p>R1(config-ext-nacl)#permit tcp any any eq 80</p>
-<p>R1(config-ext-nacl)#exit</p>
-<p>R1(config)#ip access-list extended TELNET</p>
-<p>R1(config-ext-nacl)#permit tcp any any eq 23</p>
-<p><strong>配置路由映射表</strong></p>
-<p>R1(config)#route-map CCIE permit 10</p>
-<p>R1(config-route-map)#match ip address HTTP</p>
-<p>R1(config-route-map)#set ip precedence flash</p>
-<p>R1(config-route-map)#set ip next-hop 172.16.12.2</p>
-<p>R1(config)#route-map CCIE permit 20</p>
-<p>R1(config-route-map)#match ip address TELNET</p>
-<p>R1(config-route-map)#set ip precedence critical</p>
-<p>R1(config-route-map)#set ip next-hop 172.16.21.2</p>
-<p><strong>应用路由映射表</strong></p>
-<p>R1(config)#int f0/0</p>
-<p>R1(config-if)#ip policy route-map CCIE</p>
-<p>R1(config)#ip local policy route-map CCIE</p>
+                <pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+import urllib.request
+import sqlite3
 
+res = requests.get(&#39;https://www.cnblogs.com/over140/&#39;)
+res.encoding = (&#39;utf-8&#39;)
+
+soup1 = BeautifulSoup(res.text,&#39;html.parser&#39;)
+
+#获取时间
+# def getBlogWriteTime(url):
+#     res = requests.get(url)
+#     res.encoding = (&#39;utf-8&#39;)
+#     soup = BeautifulSoup(res.text,&#39;html.parser&#39;)
+#     return soup.select(&#39;#post-date&#39;)[0].text
+
+#建库
+conn = sqlite3.connect(&#39;pachong.db&#39;)
+cursor = conn.cursor()
+c = conn.cursor()
+conn.commit()
+
+#建表
+sql_create = &#39;&#39;&#39;create table blog(tittle text,url text,nr text)&#39;&#39;&#39;
+cursor.execute(sql_create)
+conn.commit()
+
+#获取标题和链接
+num = 1
+for pt in soup1.select(&#39;.postTitle2&#39;):
+    #print(num,&#39;\t&#39;,pt.text,&#39;\t&#39;,pt[&#39;href&#39;],&#39;\t&#39;,getBlogWriteTime(pt[&#39;href&#39;]))#标题+链接+时间       
+        tittle = pt.text
+        url = pt[&#39;href&#39;]
+        res = requests.get(url)
+        soup2 = BeautifulSoup(res.text,&#39;html.parser&#39;)
+        div = soup2.find(id=&quot;cnblogs_post_body&quot;)
+        nr = div.get_text()
+        #print(div.get_text())
+        print(num,pt.text,&#39;\t&#39;,pt[&#39;href&#39;],&#39;\t&#39;,nr,&#39;\t&#39;)
+        c.execute(&quot;insert into blog values(?,?,?)&quot;,(tittle,url,nr))
+        conn.commit()        
+        num = num + 1
+conn.close()</code></pre>
             </div>
             <hr/>
 
@@ -677,9 +630,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《策略路由》
+                    《python爬取博客园文章》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/20/ce-lue-lu-you/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/11/python-pa-qu-bo-ke-yuan-wen-zhang/" property="cc:attributionName"
                rel="cc:attributionURL">
                 LY
             </a> 采用
@@ -719,30 +672,36 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/08/27/shang-chuan-rao-guo/">
+                <a href="/2019/10/11/python-pa-qu-bo-ke-yuan-wen-zhang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="上传绕过">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="python爬取博客园文章">
                         
-                        <span class="card-title">上传绕过</span>
+                        <span class="card-title">python爬取博客园文章</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            上传漏洞过滤机制部分整理：1.$deny_ext = array();//array()用于创建数组,通过匹配给定的字符，达到过滤的作用
-2.$file_name = trim($_FILES[‘upload_file’][‘name’])
+                            import requests
+from bs4 import BeautifulSoup
+import re
+import urllib.request
+import sqlite3
+
+res = requests.get(&#39;ht
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -751,11 +710,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/上传绕过技术/" target="_blank">
-                        <span class="chip bg-color">上传绕过技术</span>
+                    <a href="/tags/python/" target="_blank">
+                        <span class="chip bg-color">python</span>
                     </a>
                     
                 </div>
@@ -769,26 +729,24 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/20/ip-di-zhi-fen-lei/">
+                <a href="/2019/09/25/python-xue-xi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="IP地址分类">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="python学习">
                         
-                        <span class="card-title">IP地址分类</span>
+                        <span class="card-title">python学习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            IP地址介绍及VLSMIP地址分类A类网络地址范围第一个字节的第一位必须为0，第一个字节的取值为0-127
-即: 0xxxxxxx        取值范围是:  0000000-01111111 (0-127)
-1.1.1.1/8     
+                            
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-25
                             </span>
                         <span class="publish-author">
                             
@@ -797,14 +755,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/IP地址/" target="_blank">
-                        <span class="chip bg-color">IP地址</span>
-                    </a>
-                    
                 </div>
                 
             </div>

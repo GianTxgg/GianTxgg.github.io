@@ -4,6 +4,38 @@
   
     
     <entry>
+      <title>python爬取博客园文章</title>
+      <link href="/2019/10/11/python-pa-qu-bo-ke-yuan-wen-zhang/"/>
+      <url>/2019/10/11/python-pa-qu-bo-ke-yuan-wen-zhang/</url>
+      
+        <content type="html"><![CDATA[<pre><code>import requestsfrom bs4 import BeautifulSoupimport reimport urllib.requestimport sqlite3res = requests.get(&#39;https://www.cnblogs.com/over140/&#39;)res.encoding = (&#39;utf-8&#39;)soup1 = BeautifulSoup(res.text,&#39;html.parser&#39;)#获取时间# def getBlogWriteTime(url):#     res = requests.get(url)#     res.encoding = (&#39;utf-8&#39;)#     soup = BeautifulSoup(res.text,&#39;html.parser&#39;)#     return soup.select(&#39;#post-date&#39;)[0].text#建库conn = sqlite3.connect(&#39;pachong.db&#39;)cursor = conn.cursor()c = conn.cursor()conn.commit()#建表sql_create = &#39;&#39;&#39;create table blog(tittle text,url text,nr text)&#39;&#39;&#39;cursor.execute(sql_create)conn.commit()#获取标题和链接num = 1for pt in soup1.select(&#39;.postTitle2&#39;):    #print(num,&#39;\t&#39;,pt.text,&#39;\t&#39;,pt[&#39;href&#39;],&#39;\t&#39;,getBlogWriteTime(pt[&#39;href&#39;]))#标题+链接+时间               tittle = pt.text        url = pt[&#39;href&#39;]        res = requests.get(url)        soup2 = BeautifulSoup(res.text,&#39;html.parser&#39;)        div = soup2.find(id=&quot;cnblogs_post_body&quot;)        nr = div.get_text()        #print(div.get_text())        print(num,pt.text,&#39;\t&#39;,pt[&#39;href&#39;],&#39;\t&#39;,nr,&#39;\t&#39;)        c.execute(&quot;insert into blog values(?,?,?)&quot;,(tittle,url,nr))        conn.commit()                num = num + 1conn.close()</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>python学习</title>
+      <link href="/2019/09/25/python-xue-xi/"/>
+      <url>/2019/09/25/python-xue-xi/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>shell编程之sed与awk</title>
       <link href="/2019/09/19/shell-bian-cheng-zhi-sed-yu-awk/"/>
       <url>/2019/09/19/shell-bian-cheng-zhi-sed-yu-awk/</url>

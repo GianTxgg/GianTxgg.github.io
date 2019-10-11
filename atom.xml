@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://giantxgg.github.io/"/>
-  <updated>2019-09-19T09:52:41.958Z</updated>
+  <updated>2019-10-11T01:51:52.716Z</updated>
   <id>https://giantxgg.github.io/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python爬取博客园文章</title>
+    <link href="https://giantxgg.github.io/2019/10/11/python-pa-qu-bo-ke-yuan-wen-zhang/"/>
+    <id>https://giantxgg.github.io/2019/10/11/python-pa-qu-bo-ke-yuan-wen-zhang/</id>
+    <published>2019-10-11T01:49:18.000Z</published>
+    <updated>2019-10-11T01:51:52.716Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre&gt;&lt;code&gt;import requests
+from bs4 import BeautifulSoup
+import re
+import urllib.request
+import sqlite3
+
+res =
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="https://giantxgg.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python学习</title>
+    <link href="https://giantxgg.github.io/2019/09/25/python-xue-xi/"/>
+    <id>https://giantxgg.github.io/2019/09/25/python-xue-xi/</id>
+    <published>2019-09-25T01:06:56.000Z</published>
+    <updated>2019-09-25T01:06:56.674Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>shell编程之sed与awk</title>
