@@ -47,16 +47,27 @@ res =
   </entry>
   
   <entry>
-    <title>python学习</title>
-    <link href="https://giantxgg.github.io/2019/09/25/python-xue-xi/"/>
-    <id>https://giantxgg.github.io/2019/09/25/python-xue-xi/</id>
+    <title>Hydra的基本用法</title>
+    <link href="https://giantxgg.github.io/2019/09/25/hydra/"/>
+    <id>https://giantxgg.github.io/2019/09/25/hydra/</id>
     <published>2019-09-25T01:06:56.000Z</published>
-    <updated>2019-09-25T01:06:56.674Z</updated>
+    <updated>2019-10-14T08:12:06.415Z</updated>
     
     <summary type="html">
     
+      
+      
+        
+        
+          &lt;p&gt;1、破解ssh：&lt;br&gt;hydra -l 用户名 -p 密码字典 -t 线程 -vV -e ns ip ssh&lt;br&gt;hydra -l 用户名 -p 密码字典 -t 线程 -o save.log -vV ip ssh&lt;/p&gt;
+&lt;p&gt;2、破解ftp：&lt;br&gt;hydra ip
+        
+      
+    
     </summary>
     
+    
+      <category term="安全工具使用" scheme="https://giantxgg.github.io/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
     
   </entry>
   

